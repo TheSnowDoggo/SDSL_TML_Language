@@ -6,23 +6,26 @@
 			"include": "#comments"
 		},
 		{
+			"include": "#literals"
+		},
+		{
 			"include": "#operators"
 		},
-		{
-			"include": "#strings"
-		},
-		{
-			"include": "#numbers"
-		},
-		{
+		{	
 			"include": "#keywords"
+		},
+		{
+			"include": "#entity_names"
+		},
+		{
+			"include": "#types"
 		}
 	],
 	"repository": {
 		"comments": {
 			"patterns": [
 				{
-					"name": "comment.multi.sdsl",
+					"name": "comment.block.sdsl",
 					"begin": "#\\*",
 					"captures": {
 						"0": {
@@ -32,7 +35,7 @@
 					"end": "\\*#"
 				},
 				{
-					"name": "comment.single.sdsl",
+					"name": "comment.line.sdsl",
 					"begin": "#",
 					"captures": {
 						"0": {
@@ -43,7 +46,7 @@
 				}
 			]
 		},
-		"strings": {
+		"literals": {
 			"patterns": [
 				{
 					"name": "string.quoted.double.sdsl",
@@ -66,45 +69,67 @@
 							"match": "\\\\."
 						}
 					]
+				},
+				{
+					"name": "constant.numeric.sdsl",
+					"match": "\\b-?(\\d+\\.\\d+|\\d+)"
+				},
+				{
+					"name": "constant.language.sdsl",
+					"match": "\\b(nil|true|false)"
 				}
 			]
 		},
-		"numbers": {
-			"patterns": [{
-				"name": "number.sdsl",
-				"match": "^-?(\\d+\\.\\d+|\\d+)"
-			}]
-		},
 		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control.sdsl",
+					"match": "\\b(namespace|using|class|func|new|static|var|const|constexpr|enum|not|and|or)\\b"
+				},
+				{
+					"name": "keyword.control.sdsl",
+					"match": "\\b(return|if|else|while|break|continue|for|in|switch|default|self)\\b"
+				}
+			]
+		},
+		"entity_names": {
+			"patterns": [
+				{
+					"name": "entity.name.function.sdsl",
+					"match": "[A-Za-z_]+[A-Za-z0-9_]*\\("
+				}
+			]
+		},
+		"types": {
 			"patterns": [{
-				"name": "keyword.sdsl",
-				"match": "\\b(namespace|using|class|func|new|static|var|const|return|if|else|while|break|continue|for|in|constexpr|switch|default|enum|not|and|or)\\b"
+				"name": "entity.name.type.sdsl",
+				"match": "\\b(Nil|Bool|Number|DateTime|TimeSpan|String|Function)\\b"
 			}]
 		},
 		"operators": {
 			"patterns": [
 				{
-					"name": "keyword.operator.special.sdsl",
-					"match": "->|\\?|\\.\\.|\\.|::|:|;"
-				},
-				{
-					"name": "keyword.operator.assignment.sdsl",
-					"match": "\\*\\*=|\\*=|\\/=|\\/\\/=|%=|\\+=|-=|<<=|>>=|>>>=|&=|\\^=|\\|=|:=|="
-				},
-				{
-					"name": "keyword.operator.arithmetic.sdsl",
-					"match": "\\*\\*|\\*|\\/|\\/\\/|%|\\+|-|<<|>>|>>>|&|\\^|\\|"
-				},
-				{
-					"name": "keyword.operator.comparison.sdsl",
+					"name": "keyword.comparison.sdsl",
 					"match": "<|>|<=|>=|==|!="
 				},
 				{
-					"name": "keyword.operator.conditional.sdsl",
+					"name": "keyword.assignment.sdsl",
+					"match": "\\*\\*=|\\*=|\\/=|\\/\\/=|%=|\\+=|-=|<<=|>>=|>>>=|&=|\\^=|\\|=|:=|="
+				},
+				{
+					"name": "keyword.special.sdsl",
+					"match": "->|,|\\?|\\.\\.|\\.|::|:|;"
+				},
+				{
+					"name": "keyword.arithmetic.sdsl",
+					"match": "\\*\\*|\\*|\\/|\\/\\/|%|\\+|-|<<|>>|>>>|&|\\^|\\|"
+				},
+				{
+					"name": "keyword.conditional.sdsl",
 					"match": "&&|\\|\\|"
 				},
 				{
-					"name": "keyword.operator.unary.sdsl",
+					"name": "keyword.unary.sdsl",
 					"match": "-|!"
 				}
 			]
