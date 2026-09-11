@@ -1,0 +1,25 @@
+{
+  "name": "sdsl",
+  "displayName": "SDSL",
+  "description": "SDSL Scripting Language",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.137.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "sdsl",
+      "aliases": ["SDSL", "sdsl"],
+      "extensions": [".sdsl"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "sdsl",
+      "scopeName": "source.sdsl",
+      "path": "./syntaxes/sdsl.tmLanguage.json"
+    }]
+  }
+}

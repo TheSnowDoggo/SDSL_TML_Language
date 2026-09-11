@@ -1,0 +1,114 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SDSL",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#keywords"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment.multi.sdsl",
+					"begin": "#\\*",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.sdsl"
+						}
+					},
+					"end": "\\*#"
+				},
+				{
+					"name": "comment.single.sdsl",
+					"begin": "#",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.sdsl"
+						}
+					},
+					"end": "\\n"
+				}
+			]
+		},
+		"strings": {
+			"patterns": [
+				{
+					"name": "string.quoted.double.sdsl",
+					"begin": "\"",
+					"end": "\"",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sdsl",
+							"match": "\\\\."
+						}
+					]
+				},
+				{
+					"name": "string.quoted.single.sdsl",
+					"begin": "'",
+					"end": "'",
+					"patterns": [
+						{
+							"name": "constant.character.escape.sdsl",
+							"match": "\\\\."
+						}
+					]
+				}
+			]
+		},
+		"numbers": {
+			"patterns": [{
+				"name": "number.sdsl",
+				"match": "^-?(\\d+\\.\\d+|\\d+)"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.sdsl",
+				"match": "\\b(namespace|using|class|func|new|static|var|const|return|if|else|while|break|continue|for|in|constexpr|switch|default|enum|not|and|or)\\b"
+			}]
+		},
+		"operators": {
+			"patterns": [
+				{
+					"name": "keyword.operator.special.sdsl",
+					"match": "->|\\?|\\.\\.|\\.|::|:|;"
+				},
+				{
+					"name": "keyword.operator.assignment.sdsl",
+					"match": "\\*\\*=|\\*=|\\/=|\\/\\/=|%=|\\+=|-=|<<=|>>=|>>>=|&=|\\^=|\\|=|:=|="
+				},
+				{
+					"name": "keyword.operator.arithmetic.sdsl",
+					"match": "\\*\\*|\\*|\\/|\\/\\/|%|\\+|-|<<|>>|>>>|&|\\^|\\|"
+				},
+				{
+					"name": "keyword.operator.comparison.sdsl",
+					"match": "<|>|<=|>=|==|!="
+				},
+				{
+					"name": "keyword.operator.conditional.sdsl",
+					"match": "&&|\\|\\|"
+				},
+				{
+					"name": "keyword.operator.unary.sdsl",
+					"match": "-|!"
+				}
+			]
+		}
+	},
+	"scopeName": "source.sdsl"
+}
