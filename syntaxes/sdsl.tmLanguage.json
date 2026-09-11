@@ -6,19 +6,22 @@
 			"include": "#comments"
 		},
 		{
-			"include": "#literals"
-		},
-		{
-			"include": "#operators"
+			"include": "#strings"
 		},
 		{	
 			"include": "#keywords"
 		},
 		{
-			"include": "#entity_names"
+			"include": "#entities"
 		},
 		{
-			"include": "#types"
+			"include": "#literals"
+		},
+		{
+			"include": "#operators"
+		},
+		{
+			"include": "#entity_names"
 		}
 	],
 	"repository": {
@@ -46,7 +49,7 @@
 				}
 			]
 		},
-		"literals": {
+		"strings": {
 			"patterns": [
 				{
 					"name": "string.quoted.double.sdsl",
@@ -69,68 +72,108 @@
 							"match": "\\\\."
 						}
 					]
+				}
+			]
+		},
+		"entities": {
+			"patterns": [
+				{
+					"name": "variable.name.sdsl",
+					"match": "\\b(?:var|const|constexpr)\\s+([A-Za-z_]+\\w*)\\b"
 				},
 				{
-					"name": "constant.numeric.sdsl",
-					"match": "\\b-?(\\d+\\.\\d+|\\d+)"
+					"name": "entity.name.type.sdsl",
+					"match": "\\b(Nil|Bool|Number|DateTime|TimeSpan|String|Function)\\b"
+				}
+			]
+		},
+		"literals": {
+			"patterns": [
+				{
+					"name": "entity.name.function.sdsl",
+					"match": "\\b([A-Za-z_]+\\w*)\\s*(?:\\()"
 				},
 				{
 					"name": "constant.language.sdsl",
-					"match": "\\b(nil|true|false)"
+					"match": "\\b(nil|true|false)\\b"
+				},
+				{
+					"name": "constant.name.sdsl",
+					"match": "\\b[A-Za-z_]+[\\w]*\\b"
+				},
+				{
+					"name": "constant.numeric.sdsl",
+					"match": "\\b-?(0|[1-9])([0-9]*\\.[0-9]*|[0-9]*)"
 				}
 			]
 		},
 		"keywords": {
 			"patterns": [
 				{
-					"name": "keyword.control.sdsl",
-					"match": "\\b(namespace|using|class|func|new|static|var|const|constexpr|enum|not|and|or)\\b"
+					"name": "keyword.other.sdsl",
+					"match": "\\b(static|func|var|const|constexpr)\\b"
 				},
 				{
-					"name": "keyword.control.sdsl",
-					"match": "\\b(return|if|else|while|break|continue|for|in|switch|default|self)\\b"
-				}
-			]
-		},
-		"entity_names": {
-			"patterns": [
+					"name": "keyword.control.less.sdsl",
+					"match": "\\b(return|if|else|switch|default|while|for|in|break|continue|not|and|or)\\b"
+				},
 				{
-					"name": "entity.name.function.sdsl",
-					"match": "[A-Za-z_]+[A-Za-z0-9_]*\\("
+					"match": "\\b(using|namespace|class|enum)\\s+([A-Za-z_]+\\w*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.other.sdsl"
+						},
+						"2": {
+							"name": "entity.name.class.sdsl"
+						}
+					}
+				},
+				{
+					"match": "\\b(new)\\s+([A-Za-z_]+\\w*)\\s*(?:\\()",
+					"captures": {
+						"1": {
+							"name": "keyword.other.sdsl"
+						},
+						"2": {
+							"name": "entity.name.class.sdsl"
+						}
+					}
+				},
+				{
+					"name": "keyword.other.sdsl",
+					"match": "\\b(using|namespace|class|enum|new)\\b"
+				},
+				{
+					"name": "variable.language.sdsl",
+					"match": "\\b(self)\\b"
 				}
 			]
-		},
-		"types": {
-			"patterns": [{
-				"name": "entity.name.type.sdsl",
-				"match": "\\b(Nil|Bool|Number|DateTime|TimeSpan|String|Function)\\b"
-			}]
 		},
 		"operators": {
 			"patterns": [
 				{
 					"name": "keyword.comparison.sdsl",
-					"match": "<|>|<=|>=|==|!="
+					"match": "(<|>|<=|>=|==|!=)"
 				},
 				{
 					"name": "keyword.assignment.sdsl",
-					"match": "\\*\\*=|\\*=|\\/=|\\/\\/=|%=|\\+=|-=|<<=|>>=|>>>=|&=|\\^=|\\|=|:=|="
+					"match": "(\\*\\*=|\\*=|\\/=|\\/\\/=|%=|\\+=|-=|<<=|>>=|>>>=|&=|\\^=|\\|=|:=|=)"
 				},
 				{
 					"name": "keyword.special.sdsl",
-					"match": "->|,|\\?|\\.\\.|\\.|::|:|;"
+					"match": "(->|,|\\?|\\.\\.|\\.|::|:|;)"
 				},
 				{
 					"name": "keyword.arithmetic.sdsl",
-					"match": "\\*\\*|\\*|\\/|\\/\\/|%|\\+|-|<<|>>|>>>|&|\\^|\\|"
+					"match": "(\\*\\*|\\*|\\/|\\/\\/|%|\\+|-|<<|>>|>>>|&|\\^|\\|)"
 				},
 				{
 					"name": "keyword.conditional.sdsl",
-					"match": "&&|\\|\\|"
+					"match": "(&&|\\|\\|)"
 				},
 				{
 					"name": "keyword.unary.sdsl",
-					"match": "-|!"
+					"match": "(-|!)"
 				}
 			]
 		}

@@ -9,6 +9,9 @@
   "categories": [
     "Programming Languages"
   ],
+  "repository": {
+    "directory": "./"
+  },
   "contributes": {
     "languages": [{
       "id": "sdsl",
