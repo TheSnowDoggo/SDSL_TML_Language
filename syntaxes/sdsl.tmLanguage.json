@@ -19,9 +19,6 @@
 		},
 		{
 			"include": "#operators"
-		},
-		{
-			"include": "#entity_names"
 		}
 	],
 	"repository": {
@@ -72,6 +69,44 @@
 							"match": "\\\\."
 						}
 					]
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.other.sdsl",
+					"match": "\\b(class|new|static|func|var|const|base)\\b"
+				},
+				{
+					"name": "keyword.control.less.sdsl",
+					"match": "\\b(return|if|else|switch|default|while|for|in|break|continue|not|and|or)\\b"
+				},
+				{
+					"match": "\\b(class)\\s+([A-Za-z_]+\\w*)\\b",
+					"captures": {
+						"1": {
+							"name": "keyword.other.sdsl"
+						},
+						"2": {
+							"name": "entity.name.class.sdsl"
+						}
+					}
+				},
+				{
+					"match": "\\b(new)\\s+([A-Za-z_]+\\w*)\\s*(?:\\()",
+					"captures": {
+						"1": {
+							"name": "keyword.other.sdsl"
+						},
+						"2": {
+							"name": "entity.name.class.sdsl"
+						}
+					}
+				},
+				{
+					"name": "variable.language.sdsl",
+					"match": "\\b(self.)\\b"
 				}
 			]
 		},
@@ -144,48 +179,6 @@
 				{
 					"name": "constant.numeric.sdsl",
 					"match": "\\b-?(0|[1-9])([0-9]*\\.[0-9]*|[0-9]*)"
-				}
-			]
-		},
-		"keywords": {
-			"patterns": [
-				{
-					"name": "keyword.other.sdsl",
-					"match": "\\b(static|func|var|const|constexpr)\\b"
-				},
-				{
-					"name": "keyword.control.less.sdsl",
-					"match": "\\b(return|if|else|switch|default|while|for|in|break|continue|not|and|or)\\b"
-				},
-				{
-					"match": "\\b(using|namespace|class|enum)\\s+([A-Za-z_]+\\w*)\\b",
-					"captures": {
-						"1": {
-							"name": "keyword.other.sdsl"
-						},
-						"2": {
-							"name": "entity.name.class.sdsl"
-						}
-					}
-				},
-				{
-					"match": "\\b(new)\\s+([A-Za-z_]+\\w*)\\s*(?:\\()",
-					"captures": {
-						"1": {
-							"name": "keyword.other.sdsl"
-						},
-						"2": {
-							"name": "entity.name.class.sdsl"
-						}
-					}
-				},
-				{
-					"name": "keyword.other.sdsl",
-					"match": "\\b(using|namespace|class|enum|new)\\b"
-				},
-				{
-					"name": "variable.language.sdsl",
-					"match": "\\b(self)\\b"
 				}
 			]
 		},
